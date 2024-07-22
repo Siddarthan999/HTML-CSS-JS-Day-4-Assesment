@@ -10,60 +10,32 @@
             <h2 style="color: greenyellow;">Click the item to mark it as complete</h2>
             <input type="text" id="To-Do-List" placeholder="Task" style="border-radius: 5px; padding: 7px;">
             <input type="date" id="date" style="border-radius: 5px; padding: 7px;">
-            <button onclick="addArray3()" style="background-color: rgb(30, 235, 61); font-weight: bold; border-radius: 5px; padding-left: 14px; padding-right: 14px; padding-top: 8px; padding-bottom: 8px;">Add</button>
+            <button onclick="addArray()" style="background-color: rgb(30, 235, 61); font-weight: bold; border-radius: 5px; padding-left: 14px; padding-right: 14px; padding-top: 8px; padding-bottom: 8px;">Add</button>
             <div class="display-todolist"></div>
         </div>
         <script>
-            const todolist_Array1 = [];
-            const todolist_Array2 = [];
-            const todolist_Array3 = [];
+            const todolist_Array = [];
 
-            function addArray1() {
-                todolist_Array1.push(document.getElementById('practice1').value);
-                console.log(todolist_Array1);
-            };
-
-            function addArray2() {
-                let html = '';
-                todolist_Array2.push(document.getElementById('practice2').value);
-                display2();
-            };
-
-            function display2() {
-                let html = '';
-                for(let i=0; i<todolist_Array2.length; i++)
-                    html += `<p>${todolist_Array2[i]} <button onclick='deleteList2(${i})'>Delete</button> </p> `;
-                document.querySelector('.display-list').innerHTML = html;
-            }
-
-            function deleteList2(i) {
-                todolist_Array2.splice(i,1);
-                if(todolist_Array2.length==0)
-                    document.querySelector('.display-list').innerHTML = '';
-                else
-                    display2();
-            };
-
-            function addArray3() {
+            function addArray() {
                 let html = '';
                 let task = document.getElementById('To-Do-List').value;
                 let date = document.getElementById('date').value;
-                todolist_Array3.push({task, date});
-                display3();
+                todolist_Array.push({task, date});
+                display();
             };
 
-            function deleteList3(i) {
-                todolist_Array3.splice(i,1);
-                if(todolist_Array3.length==0)
+            function deleteList(i) {
+                todolist_Array.splice(i,1);
+                if(todolist_Array.length==0)
                     document.querySelector('.display-todolist').innerHTML = '';
                 else
-                    display3();
+                    display();
             }
 
-            function display3() {
+            function display() {
                 let html = '';
-                for(let i=0; i<todolist_Array3.length; i++)
-                    html += `<p> ${todolist_Array3[i].task} ${todolist_Array3[i].date} <button onclick="deleteList3(${i})" style="background-color: red; color: white; font-weight: bold; border-radius: 5px; padding-left: 14px; padding-right: 14px; padding-top: 8px; padding-bottom: 8px;">Delete</button> </p>`;
+                for(let i=0; i<todolist_Array.length; i++)
+                    html += `<p> ${todolist_Array[i].task} ${todolist_Array[i].date} <button onclick="deleteList(${i})" style="background-color: red; color: white; font-weight: bold; border-radius: 5px; padding-left: 14px; padding-right: 14px; padding-top: 8px; padding-bottom: 8px;">Delete</button> </p>`;
                 document.querySelector('.display-todolist').innerHTML = html;
             }
 
